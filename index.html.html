@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfólio | Ingrid Aline Nascimento Machado</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <style>
+    :root {
+      --bg-page: #ffffff;
+      --bg-card: #f8fafc;
+      --bg-card-hover: #f1f5f9;
+      --accent-blue: #0284c7;
+      --accent-blue-dark: #0369a1;
+      --accent-soft: #e0f2fe;
+      --text-main: #0f172a;
+      --text-muted: #475569;
+      --border-color: #e2e8f0;
+    }
+
+    /* Reset corrigido (o seletor original estava quebrado) */
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 80px;
+      -webkit-text-size-adjust: 100%;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg-page);
+      color: var(--text-main);
+      line-height: 1.6;
+      min-height: 100vh;
+      min-height: 100dvh;
+      display: flex;
+      flex-direction: column;
+      /* sem overflow-x: hidden no body: isso travava o scroll no celular */
+    }
+
+    h1, h2, h3 {
+      font-family: 'Space Grotesk', sans-serif;
+    }
+
+    /* Navegação */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border-color);
+      padding: 0.9rem 4%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.6rem 1rem;
+    }
+
+    .logo {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--text-main);
+      text-decoration: none;
+    }
+
+    .logo span { color: var(--accent-blue); }
+
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+      list-style: none;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: color 0.25s;
+    }
+
+    .nav-links a:hover { color: var(--accent-blue); }
+
+    .container {
+      width: 100%;
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Hero */
+    .hero {
+      padding: 4.5rem 0 3.5rem;
+      text-align: center;
+      background: radial-gradient(circle at top center, rgba(2, 132, 199, 0.08) 0%, transparent 65%);
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--accent-soft);
+      border: 1px solid #bae6fd;
+      color: var(--accent-blue-dark);
+      padding: 6px 16px;
+      border-radius: 50px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 1.4rem;
+      max-width: 100%;
+    }
+
+    .hero h1 {
+      font-size: clamp(1.9rem, 4.8vw, 3.3rem);
+      line-height: 1.15;
+      margin-bottom: 1rem;
+      overflow-wrap: break-word;
+    }
+
+    .hero p {
+      max-width: 720px;
+      margin: 0 auto 2rem;
+      color: var(--text-muted);
+      font-size: 1.05rem;
+    }
+
+    .hero-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px 24px;
+      border-radius: 8px;
+      font-weight: 600;
+      text-decoration: none;
+      font-size: 0.95rem;
+      transition: all 0.25s ease;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background: var(--accent-blue);
+      color: #ffffff;
+      box-shadow: 0 4px 14px rgba(2, 132, 199, 0.25);
+    }
+
+    .btn-primary:hover {
+      background: var(--accent-blue-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(2, 132, 199, 0.35);
+    }
+
+    .btn-outline {
+      border: 1px solid var(--border-color);
+      color: var(--text-main);
+      background: #ffffff;
+    }
+
+    .btn-outline:hover {
+      border-color: var(--accent-blue);
+      color: var(--accent-blue);
+      background: var(--bg-card);
+      transform: translateY(-2px);
+    }
+
+    main { flex: 1 0 auto; }
+
+    /* Seções */
+    section {
+      padding: 3.5rem 0;
+      border-top: 1px solid var(--border-color);
+    }
+
+    .section-title {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 1.75rem;
+      margin-bottom: 2.2rem;
+    }
+
+    .section-title i {
+      color: var(--accent-blue);
+      font-size: 1.45rem;
+    }
+
+    /* Experiência */
+    .timeline {
+      display: flex;
+      flex-direction: column;
+      gap: 1.4rem;
+    }
+
+    .exp-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-left: 4px solid var(--accent-blue);
+      border-radius: 12px;
+      padding: 1.7rem;
+      transition: transform 0.25s, box-shadow 0.25s;
+    }
+
+    .exp-card:hover {
+      transform: translateX(4px);
+      box-shadow: 0 6px 20px rgba(15, 23, 42, 0.05);
+    }
+
+    .exp-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .exp-role { font-size: 1.18rem; font-weight: 700; }
+
+    .exp-company {
+      color: var(--accent-blue);
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+
+    .exp-date {
+      background: var(--accent-soft);
+      color: var(--accent-blue-dark);
+      padding: 4px 12px;
+      border-radius: 6px;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+
+    .exp-list { list-style: none; color: var(--text-muted); }
+
+    .exp-list li {
+      position: relative;
+      padding-left: 1.4rem;
+      margin-bottom: 0.6rem;
+      font-size: 0.95rem;
+    }
+
+    .exp-list li:last-child { margin-bottom: 0; }
+
+    .exp-list li::before {
+      content: "▹";
+      position: absolute;
+      left: 0;
+      color: var(--accent-blue);
+      font-weight: bold;
+    }
+
+    /* Competências */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 290px), 1fr));
+      gap: 1.4rem;
+    }
+
+    .skill-box {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 1.7rem;
+      transition: all 0.25s;
+    }
+
+    .skill-box:hover {
+      border-color: #bae6fd;
+      background: #ffffff;
+      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.06);
+    }
+
+    .skill-icon {
+      width: 46px;
+      height: 46px;
+      background: var(--accent-soft);
+      color: var(--accent-blue);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.35rem;
+      margin-bottom: 1.1rem;
+    }
+
+    .skill-box h3 { font-size: 1.15rem; margin-bottom: 1rem; }
+
+    .tags { display: flex; flex-wrap: wrap; gap: 8px; }
+
+    .tag {
+      background: #ffffff;
+      border: 1px solid var(--border-color);
+      padding: 6px 12px;
+      border-radius: 6px;
+      font-size: 0.84rem;
+      font-weight: 500;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .tag i { color: var(--accent-blue); font-size: 0.85rem; }
+
+    /* Formação */
+    .edu-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 310px), 1fr));
+      gap: 1.4rem;
+    }
+
+    .edu-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 1.7rem;
+    }
+
+    .edu-card h3 {
+      color: var(--accent-blue);
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .edu-inst { font-weight: 600; margin-bottom: 0.3rem; }
+    .edu-meta { color: var(--text-muted); font-size: 0.9rem; }
+
+    /* Rodapé / Contato: fora do main, largura total, fim real da página */
+    footer {
+      flex-shrink: 0;
+      background: var(--bg-card);
+      border-top: 1px solid var(--border-color);
+      padding: 3.5rem 0 calc(2rem + env(safe-area-inset-bottom));
+      text-align: center;
+    }
+
+    footer h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); }
+
+    .contact-cards {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin: 2rem 0;
+    }
+
+    .contact-item {
+      background: #ffffff;
+      border: 1px solid var(--border-color);
+      padding: 0.95rem 1.4rem;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: var(--text-main);
+      font-size: 0.92rem;
+      font-weight: 500;
+      transition: all 0.25s;
+      max-width: 100%;
+    }
+
+    .contact-item span { overflow-wrap: anywhere; }
+
+    a.contact-item:hover {
+      border-color: var(--accent-blue);
+      color: var(--accent-blue);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(2, 132, 199, 0.1);
+    }
+
+    .contact-item i { color: var(--accent-blue); font-size: 1.2rem; }
+
+    .copyright {
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      margin-top: 1.2rem;
+    }
+
+    /* Responsivo */
+    @media (max-width: 720px) {
+      nav { justify-content: center; text-align: center; }
+      .nav-links { justify-content: center; gap: 0.5rem 1.1rem; }
+      .hero { padding: 3rem 0 2.5rem; }
+      .hero p { font-size: 1rem; }
+      .badge { font-size: 0.78rem; padding: 6px 12px; }
+      section { padding: 2.5rem 0; }
+      .section-title { font-size: 1.4rem; margin-bottom: 1.6rem; }
+      .exp-card, .skill-box, .edu-card { padding: 1.3rem; }
+      .exp-card:hover { transform: none; }
+      footer { padding-top: 2.5rem; }
+    }
+
+    @media (max-width: 520px) {
+      .hero-buttons { flex-direction: column; align-items: stretch; }
+      .contact-cards { flex-direction: column; align-items: stretch; }
+      .contact-item { justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="#" class="logo">&lt;Ingrid<span>.Dados</span> /&gt;</a>
+    <ul class="nav-links">
+      <li><a href="#sobre">Sobre</a></li>
+      <li><a href="#experiencia">Experiência</a></li>
+      <li><a href="#competencias">Competências</a></li>
+      <li><a href="#formacao">Formação</a></li>
+      <li><a href="#contato">Contato</a></li>
+    </ul>
+  </nav>
+
+  <header class="hero" id="sobre">
+    <div class="container">
+      <div class="badge">
+        <i class="fa-solid fa-chart-line"></i> Estágio em Análise de Dados & Desenvolvimento
+      </div>
+      <h1>Ingrid Aline Nascimento Machado</h1>
+      <p>
+        Cursando Análise e Desenvolvimento de Sistemas na <strong>FATEC</strong> (4º semestre), com atuação prática no setor administrativo e em operações B2C. Especialista em monitoramento de KPIs, automação de demandas repetitivas e estruturação de bases de dados confiáveis para alavancar a tomada de decisão estratégica.
+      </p>
+      <div class="hero-buttons">
+        <a href="https://wa.me/5511948586077?text=Ol%C3%A1%20Ingrid!%20Vi%20seu%20portf%C3%B3lio%20e%20gostaria%20de%20conversar%20sobre%20uma%20oportunidade." target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+          <i class="fa-brands fa-whatsapp"></i> Falar no WhatsApp
+        </a>
+        <a href="mailto:ingrid.an.machado@gmail.com?subject=Oportunidade%20de%20Est%C3%A1gio%20-%20Contato%20via%20Portf%C3%B3lio" class="btn btn-outline">
+          <i class="fa-solid fa-envelope"></i> Enviar E-mail
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <section id="experiencia">
+      <h2 class="section-title"><i class="fa-solid fa-briefcase"></i> Experiência Profissional</h2>
+      <div class="timeline">
+
+        <div class="exp-card">
+          <div class="exp-header">
+            <div>
+              <div class="exp-role">Estágio - B2C</div>
+              <div class="exp-company">ENEL BRASIL</div>
+            </div>
+            <span class="exp-date">08/2026 – Atual</span>
+          </div>
+          <ul class="exp-list">
+            <li>Mapeamento de fluxos na área de B2C e desenvolvimento de soluções de automação de tarefas repetitivas, otimizando a produtividade da equipe.</li>
+            <li>Análise e acompanhamento contínuo de indicadores de performance (KPIs) voltados à experiência do cliente final.</li>
+          </ul>
+        </div>
+
+        <div class="exp-card">
+          <div class="exp-header">
+            <div>
+              <div class="exp-role">Jovem Aprendiz - Administrativo</div>
+              <div class="exp-company">ENEL BRASIL</div>
+            </div>
+            <span class="exp-date">11/2025 – 08/2026</span>
+          </div>
+          <ul class="exp-list">
+            <li>Suporte administrativo e analítico, com tratamento e atualização de bases de dados em planilhas gerenciais (Excel e SharePoint), assegurando consistência e integridade operacional.</li>
+            <li>Acompanhamento de indicadores de desempenho (KPIs) e prazos de fluxos operacionais.</li>
+            <li>Operação em sistemas integrados (SAP e e-Order) para gestão, criação e conferência de notas comerciais, garantindo conformidade processual.</li>
+          </ul>
+        </div>
+
+        <div class="exp-card">
+          <div class="exp-header">
+            <div>
+              <div class="exp-role">Jovem Aprendiz - Tributos</div>
+              <div class="exp-company">CAMPARI DO BRASIL LTDA</div>
+            </div>
+            <span class="exp-date">04/2024 – 06/2025</span>
+          </div>
+          <ul class="exp-list">
+            <li>Utilização do sistema SAP para conciliação e conferência de dados fiscais, assegurando a precisão dos lançamentos e relatórios de suporte.</li>
+            <li>Apoio na emissão e controle de documentos comerciais e remessas, garantindo o cumprimento de prazos operacionais e conformidade das informações.</li>
+          </ul>
+        </div>
+
+      </div>
+    </section>
+
+    <section id="competencias">
+      <h2 class="section-title"><i class="fa-solid fa-microchip"></i> Competências Técnicas</h2>
+      <div class="skills-grid">
+
+        <div class="skill-box">
+          <div class="skill-icon"><i class="fa-solid fa-database"></i></div>
+          <h3>Dados & Business Intelligence</h3>
+          <div class="tags">
+            <span class="tag"><i class="fa-solid fa-chart-pie"></i> Power BI</span>
+            <span class="tag"><i class="fa-brands fa-python"></i> Python (Análise de Dados)</span>
+            <span class="tag"><i class="fa-solid fa-file-excel"></i> Excel Intermediário</span>
+            <span class="tag"><i class="fa-solid fa-robot"></i> Automação de Fluxos</span>
+            <span class="tag"><i class="fa-solid fa-gauge-high"></i> Monitoramento de KPIs</span>
+          </div>
+        </div>
+
+        <div class="skill-box">
+          <div class="skill-icon"><i class="fa-solid fa-code"></i></div>
+          <h3>Desenvolvimento & Programação</h3>
+          <div class="tags">
+            <span class="tag"><i class="fa-brands fa-java"></i> Java & POO</span>
+            <span class="tag"><i class="fa-brands fa-html5"></i> HTML5</span>
+            <span class="tag"><i class="fa-brands fa-css3-alt"></i> CSS3</span>
+            <span class="tag"><i class="fa-brands fa-js"></i> JavaScript</span>
+            <span class="tag"><i class="fa-solid fa-sitemap"></i> Lógica & Algoritmos</span>
+          </div>
+        </div>
+
+        <div class="skill-box">
+          <div class="skill-icon"><i class="fa-solid fa-server"></i></div>
+          <h3>Sistemas Corporativos & Gestão</h3>
+          <div class="tags">
+            <span class="tag"><i class="fa-solid fa-cubes"></i> SAP (FI, MM e SD)</span>
+            <span class="tag"><i class="fa-solid fa-headset"></i> ServiceNow</span>
+            <span class="tag"><i class="fa-solid fa-file-invoice"></i> e-Order</span>
+            <span class="tag"><i class="fa-solid fa-share-nodes"></i> SharePoint</span>
+            <span class="tag"><i class="fa-solid fa-file-powerpoint"></i> Pacote Office</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section id="formacao">
+      <h2 class="section-title"><i class="fa-solid fa-graduation-cap"></i> Formação & Certificações</h2>
+      <div class="edu-grid">
+
+        <div class="edu-card">
+          <h3><i class="fa-solid fa-university"></i> Formação Acadêmica</h3>
+          <p class="edu-inst">Tecnólogo em Análise e Desenvolvimento de Sistemas</p>
+          <p class="edu-meta">Faculdade de Tecnologia do Estado de São Paulo (FATEC)</p>
+          <p class="edu-meta" style="margin-top: 6px;">01/2025 – 12/2027 (4º Semestre) • Inglês Básico</p>
+        </div>
+
+        <div class="edu-card">
+          <h3><i class="fa-solid fa-certificate"></i> Cursos Complementares</h3>
+          <p class="edu-inst">Microsoft Power BI Para Business Intelligence e Data Science</p>
+          <p class="edu-meta" style="margin-bottom: 12px;">Data Science Academy</p>
+
+          <p class="edu-inst">Fundamentos de Linguagem Python para Análise de Dados</p>
+          <p class="edu-meta">Data Science Academy</p>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Contato: agora fora do <main>, ocupa a largura toda e encerra a página -->
+  <footer id="contato">
+    <div class="container">
+      <h2>Vamos conectar dados e resultados?</h2>
+      <p style="color: var(--text-muted); margin-top: 0.5rem;">Disponível para oportunidades de estágio em Análise de Dados e Desenvolvimento.</p>
+
+      <div class="contact-cards">
+        <a href="https://wa.me/5511948586077?text=Ol%C3%A1%20Ingrid!%20Vi%20seu%20portf%C3%B3lio%20e%20gostaria%20de%20conversar%20sobre%20uma%20oportunidade." target="_blank" rel="noopener noreferrer" class="contact-item">
+          <i class="fa-brands fa-whatsapp"></i>
+          <span>(11) 94858-6077</span>
+        </a>
+        <a href="mailto:ingrid.an.machado@gmail.com?subject=Oportunidade%20de%20Est%C3%A1gio%20-%20Contato%20via%20Portf%C3%B3lio" class="contact-item">
+          <i class="fa-solid fa-envelope"></i>
+          <span>ingrid.an.machado@gmail.com</span>
+        </a>
+        <div class="contact-item">
+          <i class="fa-solid fa-location-dot"></i>
+          <span>Osasco - SP</span>
+        </div>
+      </div>
+
+      <p class="copyright">© 2026 Ingrid Aline Nascimento Machado. Desenvolvido com foco em Tecnologia e Dados.</p>
+    </div>
+  </footer>
+
+</body>
+</html>
